@@ -3,12 +3,12 @@
   "name": "Aquarius Squash",
   "icons": [
     {
-      "src": "https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/324/landscape/ioniclogo.png",
+      "src": "https://img.icons8.com/ios-filled/196/000000/squash-ball.png",
       "sizes": "192x192 512x512",
       "type": "image/png"
     }
   ],
-  "start_url": "/tab1",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#ffffff",
   "background_color": "#ffffff"
