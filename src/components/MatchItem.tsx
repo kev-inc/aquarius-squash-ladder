@@ -34,7 +34,7 @@ const MatchItem: React.FC<ContainerProps> = ({
           </IonCol>
         </IonRow>
         <IonRow>
-          <p style={{ fontSize: 8, opacity: 0.5, textAlign: "center" }}>
+          <p style={{ fontSize: 12, opacity: 0.5, textAlign: "center" }}>
             {new Date(ts).toString()}
           </p>
         </IonRow>
