@@ -57,7 +57,7 @@ const CreateNewGroupPage: React.FC<RouteComponentProps> = ({ history }) => {
     const p1rank = rankings.findIndex((p) => p === p1);
     const p2rank = rankings.findIndex((p) => p === p2);
     console.log(p1rank, p2rank);
-    if (Math.abs(p1rank - p2rank) <= 5) {
+    if (Math.abs(p1rank - p2rank) <= 4) {
       if (p1rank < p2rank) {
         // if p1 is better than p2
         if (p1score > p2score) {
