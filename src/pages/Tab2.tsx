@@ -24,7 +24,7 @@ const Tab2: React.FC = () => {
         p2: String;
         p1score: Number;
         p2score: Number;
-        ts: Number;
+        ts: string;
       };
     }[]
   >([]);

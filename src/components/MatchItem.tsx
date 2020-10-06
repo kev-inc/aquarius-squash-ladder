@@ -6,7 +6,7 @@ interface ContainerProps {
   p2: String;
   p1score: Number;
   p2score: Number;
-  ts: Number;
+  ts: string;
 }
 
 const MatchItem: React.FC<ContainerProps> = ({
