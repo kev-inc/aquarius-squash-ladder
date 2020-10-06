@@ -1,12 +1,12 @@
 import React from "react";
-import { IonItem, IonText, IonGrid, IonRow, IonCol } from "@ionic/react";
+import { IonItem, IonGrid, IonRow, IonCol } from "@ionic/react";
 
 interface ContainerProps {
-  p1: string;
-  p2: string;
-  p1score: number;
-  p2score: number;
-  ts: string;
+  p1: String;
+  p2: String;
+  p1score: Number;
+  p2score: Number;
+  ts: Number;
 }
 
 const MatchItem: React.FC<ContainerProps> = ({

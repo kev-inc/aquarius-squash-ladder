@@ -16,12 +16,23 @@ import "./Tab2.css";
 import database from "../firebase";
 
 const Tab2: React.FC = () => {
-  const [matches, setMatches] = useState([]);
+  const [matches, setMatches] = useState<
+    {
+      id: String;
+      match: {
+        p1: String;
+        p2: String;
+        p1score: Number;
+        p2score: Number;
+        ts: Number;
+      };
+    }[]
+  >([]);
   useEffect(() => {
     database
       .ref("matches")
       .once("value")
-      .then((snapshot) => {
+      .then((snapshot: any) => {
         const resp = snapshot.val();
         if (resp) {
           const arr = Object.keys(resp).map((match) => {

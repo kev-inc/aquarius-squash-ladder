@@ -2,8 +2,8 @@ import React from "react";
 import { IonItem, IonLabel, IonAvatar, IonChip } from "@ionic/react";
 
 interface ContainerProps {
-  name: string;
-  position: number;
+  name: String;
+  position: Number;
 }
 
 const RankingItem: React.FC<ContainerProps> = ({ name, position }) => {

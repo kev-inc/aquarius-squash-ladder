@@ -24,12 +24,12 @@ const CreateNewGroupPage: React.FC<RouteComponentProps> = ({ history }) => {
   const [p1score, setp1score] = useState("");
   const [p2, setp2] = useState("");
   const [p2score, setp2score] = useState("");
-  const [players, setPlayers] = useState([]);
+  const [players, setPlayers] = useState<String[]>([]);
   useEffect(() => {
     database
       .ref("rankings")
       .once("value")
-      .then((snapshot) => {
+      .then((snapshot: any) => {
         if (players.length === 0) {
           setPlayers(snapshot.val());
         }

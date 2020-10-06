@@ -12,12 +12,12 @@ import database from "../firebase";
 import "./Tab1.css";
 
 const Tab1: React.FC = () => {
-  const [rankings, setRankings] = useState([]);
+  const [rankings, setRankings] = useState<String[]>([]);
   useEffect(() => {
     database
       .ref("rankings")
       .once("value")
-      .then((snapshot) => {
+      .then((snapshot: any) => {
         setRankings(snapshot.val());
       });
   }, [rankings]);
