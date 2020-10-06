@@ -1,5 +1,6 @@
 var firebase = require("firebase/app");
 require("firebase/database");
+require("dotenv").config();
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
