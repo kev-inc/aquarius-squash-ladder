@@ -3,7 +3,7 @@
   "name": "Aquarius Squash",
   "icons": [
     {
-      "src": "https://img.icons8.com/ios-filled/196/4287f5/squash-ball.png",
+      "src": "assets/icon/logo.png",
       "sizes": "192x192 512x512",
       "type": "image/png"
     }
