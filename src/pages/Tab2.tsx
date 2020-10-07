@@ -25,6 +25,7 @@ const Tab2: React.FC = () => {
         p1score: Number;
         p2score: Number;
         ts: string;
+        remarks: String;
       };
     }[]
   >([]);
@@ -63,6 +64,7 @@ const Tab2: React.FC = () => {
                 p1score={item.match.p1score}
                 p2score={item.match.p2score}
                 ts={item.match.ts}
+                remarks={item.match.remarks}
               />
             ))}
         </IonList>

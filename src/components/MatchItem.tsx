@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { IonItem, IonGrid, IonRow, IonCol } from "@ionic/react";
 
 interface ContainerProps {
@@ -7,6 +8,7 @@ interface ContainerProps {
   p1score: Number;
   p2score: Number;
   ts: string;
+  remarks: String;
 }
 
 const MatchItem: React.FC<ContainerProps> = ({
@@ -14,11 +16,15 @@ const MatchItem: React.FC<ContainerProps> = ({
   p2,
   p1score,
   p2score,
-  ts
+  ts,
+  remarks
 }) => {
   return (
     <IonItem>
       <IonGrid>
+        <IonRow>
+          <h5>{remarks}</h5>
+        </IonRow>
         <IonRow>
           <IonCol class="ion-text-center">{p1}</IonCol>
           <IonCol class="ion-text-center">vs</IonCol>
@@ -34,9 +40,7 @@ const MatchItem: React.FC<ContainerProps> = ({
           </IonCol>
         </IonRow>
         <IonRow>
-          <p style={{ fontSize: 12, opacity: 0.5, textAlign: "center" }}>
-            {new Date(ts).toString()}
-          </p>
+          <p style={{ fontSize: 12, opacity: 0.5 }}>{moment(ts).fromNow()}</p>
         </IonRow>
       </IonGrid>
     </IonItem>

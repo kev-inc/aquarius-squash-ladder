@@ -67,15 +67,7 @@ const MatchModal: React.FC<ContainerProps> = ({ match }) => {
             .slice(0)
             .reverse()
             .map((item, index) => (
-              <MatchItem
-                key={index}
-                p1={item.match.p1}
-                p2={item.match.p2}
-                p1score={item.match.p1score}
-                p2score={item.match.p2score}
-                ts={item.match.ts}
-                remarks={item.match.remarks}
-              />
+              <p>hi</p>
             ))}
         </IonList>
       </IonContent>

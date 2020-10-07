@@ -37,47 +37,47 @@ const CreateNewGroupPage: React.FC<RouteComponentProps> = ({ history }) => {
   }, [players]);
 
   const createRoom = () => {
-    const ts = Date.now();
-    database.ref("matches").push(
-      {
-        p1: p1,
-        p2: p2,
-        p1score: p1score,
-        p2score: p2score,
-        ts: ts
-      },
-      updateRankings
-    );
-    history.goBack();
-  };
-
-  const updateRankings = () => {
     console.log("update rankings");
     var rankings = players.splice(0);
     const p1rank = rankings.findIndex((p) => p === p1);
     const p2rank = rankings.findIndex((p) => p === p2);
-    console.log(p1rank, p2rank);
+    var remarks = "";
     if (Math.abs(p1rank - p2rank) <= 4) {
       if (p1rank < p2rank) {
         // if p1 is better than p2
         if (p1score > p2score) {
           // p1 wins p2, do nothing
+          remarks = "No change in ranking";
         } else {
           // p2 wins p1, update
           rankings.splice(p2rank, 1);
           rankings.splice(p1rank, 0, p2);
+          remarks = `${p2} moves to rank ${p1rank + 1}`;
         }
       } else {
         if (p1score > p2score) {
           rankings.splice(p1rank, 1);
           rankings.splice(p2rank, 0, p1);
+          remarks = `${p1} moves to rank ${p2rank + 1}`;
         } else {
           // do nothing
+          remarks = "No change in rankings";
         }
       }
+    } else {
+      remarks = "No change in rankings";
     }
-
     database.ref("rankings").set(rankings);
+    const ts = Date.now();
+    database.ref("matches").push({
+      p1: p1,
+      p2: p2,
+      p1score: p1score,
+      p2score: p2score,
+      ts: ts,
+      remarks: remarks
+    });
+    history.goBack();
   };
 
   return (

@@ -1,5 +1,6 @@
-import React from "react";
-import { IonItem, IonLabel, IonAvatar, IonChip } from "@ionic/react";
+import React, { useState } from "react";
+import { IonItem, IonLabel, IonAvatar, IonChip, IonModal } from "@ionic/react";
+import Tab2 from "../pages/Tab2";
 
 interface ContainerProps {
   name: String;
@@ -8,7 +9,7 @@ interface ContainerProps {
 
 const RankingItem: React.FC<ContainerProps> = ({ name, position }) => {
   return (
-    <IonItem>
+    <IonItem routerLink={`/matches/${name}`} routerDirection="forward">
       <IonAvatar slot="start">
         <IonChip>
           <IonLabel color="secondary">{position}</IonLabel>
