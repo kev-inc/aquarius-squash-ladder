@@ -7,7 +7,13 @@ import {
   IonToolbar,
   IonList,
   IonButtons,
-  IonBackButton
+  IonBackButton,
+  IonItem,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonItemDivider,
+  IonLabel
 } from "@ionic/react";
 import MatchItem from "../components/MatchItem";
 import { RouteComponentProps } from "react-router";
@@ -19,6 +25,8 @@ interface ContainerProps
   }> {}
 
 const MatchModal: React.FC<ContainerProps> = ({ match }) => {
+  const [wins, setWins] = useState(0);
+  const [loss, setLosses] = useState(0);
   const [matches, setMatches] = useState<
     {
       id: String;
@@ -48,6 +56,22 @@ const MatchModal: React.FC<ContainerProps> = ({ match }) => {
               item.match["p2"] === match.params.player
           );
           setMatches(filteredArr);
+          const w = filteredArr.filter(
+            (item) =>
+              (item.match["p1"] === match.params.player &&
+                item.match["p1score"] > item.match["p2score"]) ||
+              (item.match["p2"] === match.params.player &&
+                item.match["p2score"] > item.match["p1score"])
+          ).length;
+          const l = filteredArr.filter(
+            (item) =>
+              (item.match["p1"] === match.params.player &&
+                item.match["p1score"] < item.match["p2score"]) ||
+              (item.match["p2"] === match.params.player &&
+                item.match["p2score"] < item.match["p1score"])
+          ).length;
+          setWins(w);
+          setLosses(l);
         }
       });
   }, [matches, match]);
@@ -63,6 +87,29 @@ const MatchModal: React.FC<ContainerProps> = ({ match }) => {
       </IonHeader>
       <IonContent fullscreen>
         <IonList>
+          <IonItemDivider>
+            <IonLabel>Player Summary</IonLabel>
+          </IonItemDivider>
+          <IonItem>
+            <IonGrid>
+              <IonRow>
+                <IonCol class="ion-text-center">Wins</IonCol>
+                <IonCol class="ion-text-center">Losses</IonCol>
+              </IonRow>
+              <IonRow>
+                <IonCol class="ion-text-center">
+                  <h3>{wins}</h3>
+                </IonCol>
+                <IonCol class="ion-text-center">
+                  <h3>{loss}</h3>
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+          </IonItem>
+
+          <IonItemDivider>
+            <IonLabel>Matches Played</IonLabel>
+          </IonItemDivider>
           {matches
             .slice(0)
             .reverse()
