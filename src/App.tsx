@@ -34,6 +34,8 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import CreateNewGroupPage from "./pages/CreateNewGroupPage";
 import MatchModal from "./components/MatchModal";
+import AdminRankings from "./pages/AdminRankings";
+import AdminMatches from "./pages/AdminMatches";
 
 const App: React.FC = () => (
   <IonApp>
@@ -44,6 +46,13 @@ const App: React.FC = () => (
           <Route path="/tab2" component={Tab2} exact={true} />
           <Route path="/newmatch" component={CreateNewGroupPage} />
           <Route path="/matches/:player" component={MatchModal} />
+          <Route path="/admin/rankings" component={AdminRankings} />
+          <Route path="/admin/matches" component={AdminMatches} />
+          <Route
+            path="/admin"
+            render={() => <Redirect to="/admin/rankings" />}
+            exact={true}
+          />
           <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">

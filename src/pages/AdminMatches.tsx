@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   IonContent,
   IonHeader,
   IonPage,
-  IonTitle,
+  IonButton,
   IonToolbar,
   IonList,
   IonFab,
   IonFabButton,
-  IonIcon
+  IonIcon,
+  IonItemSliding,
+  IonItemOptions,
+  IonItemOption
 } from "@ionic/react";
-import { add } from "ionicons/icons";
-import MatchItem from "../components/MatchItem";
-import "./Tab2.css";
 import database from "../firebase";
+import MatchItem from "../components/MatchItem";
+import { trash, add, swapHorizontal } from "ionicons/icons";
 
-const Tab2: React.FC = () => {
+const AdminMatches: React.FC = () => {
   const [matches, setMatches] = useState<
     {
       id: String;
@@ -47,11 +49,22 @@ const Tab2: React.FC = () => {
       });
   }, [matches]);
 
+  const deleteMatch = (id: String) => {
+    database.ref("matches/" + id).remove();
+  };
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Matches</IonTitle>
+          <IonButton
+            fill="clear"
+            routerLink="/admin/rankings"
+            routerDirection="root"
+          >
+            Edit Matches
+            <IonIcon icon={swapHorizontal} />
+          </IonButton>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -60,15 +73,24 @@ const Tab2: React.FC = () => {
             .slice(0)
             .reverse()
             .map((item, index) => (
-              <MatchItem
-                key={index}
-                p1={item.match.p1}
-                p2={item.match.p2}
-                p1score={item.match.p1score}
-                p2score={item.match.p2score}
-                ts={item.match.ts}
-                remarks={item.match.remarks}
-              />
+              <IonItemSliding key={index}>
+                <MatchItem
+                  p1={item.match.p1}
+                  p2={item.match.p2}
+                  p1score={item.match.p1score}
+                  p2score={item.match.p2score}
+                  ts={item.match.ts}
+                  remarks={item.match.remarks}
+                />
+                <IonItemOptions>
+                  <IonItemOption
+                    color="danger"
+                    onClick={() => deleteMatch(item.id)}
+                  >
+                    <IonIcon icon={trash}></IonIcon>
+                  </IonItemOption>
+                </IonItemOptions>
+              </IonItemSliding>
             ))}
         </IonList>
 
@@ -82,4 +104,4 @@ const Tab2: React.FC = () => {
   );
 };
 
-export default Tab2;
+export default AdminMatches;
