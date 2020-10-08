@@ -42,30 +42,26 @@ const CreateNewGroupPage: React.FC<RouteComponentProps> = ({ history }) => {
     const p1rank = rankings.findIndex((p) => p === p1);
     const p2rank = rankings.findIndex((p) => p === p2);
     var remarks = "";
-    if (Math.abs(p1rank - p2rank) <= 4) {
-      if (p1rank < p2rank) {
-        // if p1 is better than p2
-        if (p1score > p2score) {
-          // p1 wins p2, do nothing
-          remarks = "No change in ranking";
-        } else {
-          // p2 wins p1, update
-          rankings.splice(p2rank, 1);
-          rankings.splice(p1rank, 0, p2);
-          remarks = `${p2} moves to rank ${p1rank + 1}`;
-        }
+    if (p1rank < p2rank) {
+      // if p1 is better than p2
+      if (p1score > p2score) {
+        // p1 wins p2, do nothing
+        remarks = "No change in ranking";
       } else {
-        if (p1score > p2score) {
-          rankings.splice(p1rank, 1);
-          rankings.splice(p2rank, 0, p1);
-          remarks = `${p1} moves to rank ${p2rank + 1}`;
-        } else {
-          // do nothing
-          remarks = "No change in rankings";
-        }
+        // p2 wins p1, update
+        rankings.splice(p2rank, 1);
+        rankings.splice(p1rank, 0, p2);
+        remarks = `${p2} moves to rank ${p1rank + 1}`;
       }
     } else {
-      remarks = "No change in rankings";
+      if (p1score > p2score) {
+        rankings.splice(p1rank, 1);
+        rankings.splice(p2rank, 0, p1);
+        remarks = `${p1} moves to rank ${p2rank + 1}`;
+      } else {
+        // do nothing
+        remarks = "No change in rankings";
+      }
     }
     database.ref("rankings").set(rankings);
     const ts = Date.now();
