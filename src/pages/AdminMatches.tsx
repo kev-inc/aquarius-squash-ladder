@@ -59,7 +59,7 @@ const AdminMatches: React.FC = () => {
         <IonToolbar>
           <IonButton
             fill="clear"
-            routerLink="/admin/rankings"
+            routerLink="/secret/rankings"
             routerDirection="root"
           >
             Edit Matches

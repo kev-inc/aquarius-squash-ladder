@@ -46,11 +46,11 @@ const App: React.FC = () => (
           <Route path="/tab2" component={Tab2} exact={true} />
           <Route path="/newmatch" component={CreateNewGroupPage} />
           <Route path="/matches/:player" component={MatchModal} />
-          <Route path="/admin/rankings" component={AdminRankings} />
-          <Route path="/admin/matches" component={AdminMatches} />
+          <Route path="/secret/rankings" component={AdminRankings} />
+          <Route path="/secret/matches" component={AdminMatches} />
           <Route
-            path="/admin"
-            render={() => <Redirect to="/admin/rankings" />}
+            path="/secret"
+            render={() => <Redirect to="/secret/rankings" />}
             exact={true}
           />
           <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />

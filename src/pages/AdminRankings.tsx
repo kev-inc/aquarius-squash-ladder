@@ -86,7 +86,7 @@ const AdminRankings: React.FC<RouteComponentProps> = ({ history }) => {
         <IonToolbar>
           <IonButton
             fill="clear"
-            routerLink="/admin/matches"
+            routerLink="/secret/matches"
             routerDirection="root"
           >
             Edit Ranking
