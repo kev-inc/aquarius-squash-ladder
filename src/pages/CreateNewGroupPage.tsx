@@ -44,14 +44,14 @@ const CreateNewGroupPage: React.FC<RouteComponentProps> = ({ history }) => {
     var remarks = "";
     if (p1rank < p2rank) {
       // if p1 is better than p2
-      if (p1score > p2score) {
-        // p1 wins p2, do nothing
-        remarks = "No change in ranking";
-      } else {
+      if (p1score < p2score) {
         // p2 wins p1, update
         rankings.splice(p2rank, 1);
         rankings.splice(p1rank, 0, p2);
         remarks = `${p2} moves to rank ${p1rank + 1}`;
+      } else {
+        // p1 wins p2, do nothing
+        remarks = "No change in ranking";
       }
     } else {
       if (p1score > p2score) {
