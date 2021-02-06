@@ -30,18 +30,22 @@ const CreateNewGroupPage: React.FC<RouteComponentProps> = ({ history }) => {
       .ref("rankings")
       .once("value")
       .then((snapshot: any) => {
-        if (players.length === 0) {
-          setPlayers(snapshot.val());
-        }
+        setPlayers(snapshot.val());
       });
-  }, [players]);
+  }, []);
 
   const createRoom = () => {
     console.log("update rankings");
-    var rankings = players.splice(0);
+    var rankings = players.slice(0);
+    if (rankings.length === 0) {
+      return;
+    }
     const p1rank = rankings.findIndex((p) => p === p1);
     const p2rank = rankings.findIndex((p) => p === p2);
     var remarks = "";
+    if (p1rank === -1 || p2rank === -1) {
+      return;
+    }
     if (p1rank < p2rank) {
       // if p1 is better than p2
       if (p1score < p2score) {

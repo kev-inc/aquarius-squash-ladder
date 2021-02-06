@@ -33,6 +33,7 @@ const Tab2: React.FC = () => {
   useEffect(() => {
     database
       .ref("matches")
+      .limitToLast(50)
       .once("value")
       .then((snapshot: any) => {
         const resp = snapshot.val();
